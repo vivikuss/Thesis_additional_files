@@ -14,17 +14,17 @@ grid_size = 10          # number of data points
 axis_si = np.linspace(0.15,0.65,grid_size)*au_unit  # in meters
 lum_si = np.ones_like(axis_si)*0.0234*Lsun_unit     # in Watts
 x,y = np.meshgrid(axis_si,lum_si)
-co2 = [0.01, 0.1, 0.95, 0.999]                  # co2 concentrations
-h = [0.99, 0.9, 0.05, 0.001]                      # He or H2 concentrations
+co2 = [0.01, 0.1, 0.95]                  # co2 concentrations
+h = [0.99, 0.9, 0.05]                      # He or H2 concentrations
 gas = ['He_', 'H2_']                            # He or H2 atmosphere
-strings = ['1p','10p','95p','999p']                 # labels for path
+strings = ['1p','10p','95p']                 # labels for path
 ### 
 
 ### ADJUST THIS PART ###
 # paths
-exp_dir = '/Users/new/Desktop/THESIS/THESIS_PCM_LBL/example_run'
+exp_dir = '/Users/new/Desktop/PCM_LBL_pap/example_run/'
 exec_name = 'PCM_LBL.e'
-nml_path = '/Users/new/Desktop/THESIS/THESIS_PCM_LBL/example_run/input.nml'
+nml_path = '/Users/new/Desktop/PCM_LBL_pap/example_run/input.nml'
 results_path = "results_Tsurf_20bar_"
 ###
 
@@ -47,9 +47,6 @@ for j,g in enumerate(gas):
                     flux_temp += 0.1
                 flux[0,i] = round(flux_temp,2)                  # round
                 flux_label = round(flux_temp,2) 
-
-        # print(np.max(flux), np.min(flux))
-        # print(flux[0,:])
 
                 with open(nml_path) as nml_file_in:
                     nml = f90nml.read(nml_file_in)              # open namelist file
