@@ -54,6 +54,7 @@ for j,g in enumerate(gas):
                     nml['shortwave_nml']['Fstel0'] = flux[0,i]      # set flux
                     nml_file_out = exp_dir + 'input.nml' 
                     f90nml.write(nml, nml_file_out, force=True)         # overwrite former flux
+                    
 
                 os.chdir(exp_dir)                                   # execute PCM_LBL for this flux
                 subprocess.run(["make", "all"], check=True)
