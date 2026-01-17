@@ -4,7 +4,7 @@ import matplotlib.ticker as ticker
 
 ### ADJUST THIS PART ###
 # Paths
-results_folder = '/Users/new/Desktop/Plots/PLOTS_PAPER'
+results_folder = '/Users/new/Desktop/Plots/PLOTS_PAPER/'
 paths = ['results_adj_hybrid_h2_', 'results_adj_hybrid_n2_', 'results_adj_hybrid_he_']
 colors = ['coral','deepskyblue','darkviolet']
 labels = [r'99% H$_2$, 1% CO$_2$, 1 bar',r'99% N$_2$, 1% CO$_2$, 1 bar',r'99% He, 1% CO$_2$, 1 bar']
@@ -20,11 +20,11 @@ plt.rcParams.update({'font.size': 13})
 
 for j, star in enumerate(spectra):
     for k, (col,in_path,lab) in enumerate(zip(colors,paths,labels)):
-        path_p = in_path + f'{star}/plev.out'
+        path_p = results_folder + in_path + f'{star}/plev.out'
         data_p = np.loadtxt(path_p,skiprows=1)
-        path_T = in_path + f'{star}/Tlev.out'
+        path_T = results_folder + in_path + f'{star}/Tlev.out'
         data_T = np.loadtxt(path_T,skiprows=1)
-        path_h = in_path + f'{star}/height.out'
+        path_h = results_folder + in_path + f'{star}/height.out'
         data_h = np.loadtxt(path_h,skiprows=1)
 
         row, column = j, 0  # top row
@@ -53,10 +53,13 @@ for j, star in enumerate(spectra):
         ax2.yaxis.set_major_formatter(formatter)
 
 ax1.invert_yaxis()
+fig.subplots_adjust(hspace=0.4)
+fig.text(0.5, 0.96, "G Dwarf Spectrum", ha="center", va="top", fontweight='bold', fontsize=20)
+fig.text(0.5, 0.50, "M Dwarf Spectrum", ha="center", va="top", fontweight='bold', fontsize=20)
 labels_sub = ['a)', 'b)', 'c)', 'd)']
 positions = [(0, 0), (0, 1), (1, 0), (1, 1)]
 offsets = [(-0.15, 1.05), (-0.10, 1.05), (-0.15, 1.05), (-0.10, 1.05)]
 for label, (i, j), (x, y) in zip(labels_sub, positions, offsets):
     axs[i, j].text(x, y, label, transform=axs[i,j].transAxes,fontsize=20,va='bottom', ha='left')
-plt.savefig('/Users/new/Desktop/combined_comparison_pap.png',dpi=750)
+plt.savefig('/Users/new/Desktop/combined_comparison_pap_new.png',dpi=750)
 plt.show()
