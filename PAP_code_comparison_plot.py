@@ -6,7 +6,7 @@ import matplotlib.ticker as ticker
 # Paths
 user = f"/Users/new/Desktop/"   #### CUSTOMIZE ####
 results_folder = user + 'Thesis_Data/'
-paths = ['results_adj_hybrid_h2_', 'results_adj_hybrid_n2_', 'results_adj_hybrid_he_']
+paths = ['results_hybrid_h2_', 'results_hybrid_n2_', 'results_hybrid_he_']
 colors = ['coral','deepskyblue','darkviolet']
 labels = [r'99% H$_2$, 1% CO$_2$, 1 bar',r'99% N$_2$, 1% CO$_2$, 1 bar',r'99% He, 1% CO$_2$, 1 bar']
 spectra = ['solar', 'mdwarf']
