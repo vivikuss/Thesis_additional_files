@@ -34,9 +34,10 @@ temps = [273.15, 373.15]
 
 ### ADJUST THIS PART ###
 # Path for all cases
-path = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_fin_1bar_"                                     # data for 1 bar
-path2 = f"/Users/new/Desktop/Thesis_Data/"                                  # data from one-shot mode
-path_20bar = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_"                                    # data for 20 bar
+user = f"/Users/new/Desktop/"             #### CUSTOMIZE ####                            # path to Desktop
+path = user + f"Thesis_Data/results_Tsurf_fin_1bar_"                                     # data for 1 bar
+path2 = user + f"Thesis_Data/"                                                      # data from one-shot mode
+path_20bar = user + f"Thesis_Data/results_Tsurf_"                                    # data for 20 bar
 ####
 
 #### ADJUST LABELS AND PATHS FOR 20 BAR FURTHER DOWN ###
