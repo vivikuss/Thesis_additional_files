@@ -35,7 +35,7 @@ temps = [273.15, 373.15]
 ### ADJUST THIS PART ###
 # Path for all cases
 path = f"/Users/new/Desktop/Results_Tsurf/1bar"                                     # data for 1 bar
-path2 = f"/Users/new/Desktop/Results_Tsurf/added"                                  # data from one-shot mode
+path2 = f"/Users/new/Desktop/Results_Tsurf/added/"                                  # data from one-shot mode
 path_20bar = f"/Users/new/Desktop/Results_Tsurf/20bar"                                    # data for 20 bar
 ####
 
