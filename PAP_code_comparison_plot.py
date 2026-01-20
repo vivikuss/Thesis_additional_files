@@ -4,7 +4,8 @@ import matplotlib.ticker as ticker
 
 ### ADJUST THIS PART ###
 # Paths
-results_folder = '/Users/new/Desktop/Plots/PLOTS_PAPER/'
+user = f"/Users/new/Desktop/"   #### CUSTOMIZE ####
+results_folder = user + 'Thesis_Data/'
 paths = ['results_adj_hybrid_h2_', 'results_adj_hybrid_n2_', 'results_adj_hybrid_he_']
 colors = ['coral','deepskyblue','darkviolet']
 labels = [r'99% H$_2$, 1% CO$_2$, 1 bar',r'99% N$_2$, 1% CO$_2$, 1 bar',r'99% He, 1% CO$_2$, 1 bar']
@@ -61,5 +62,5 @@ positions = [(0, 0), (0, 1), (1, 0), (1, 1)]
 offsets = [(-0.15, 1.05), (-0.10, 1.05), (-0.15, 1.05), (-0.10, 1.05)]
 for label, (i, j), (x, y) in zip(labels_sub, positions, offsets):
     axs[i, j].text(x, y, label, transform=axs[i,j].transAxes,fontsize=20,va='bottom', ha='left')
-plt.savefig('/Users/new/Desktop/combined_comparison_pap_new.png',dpi=750)
+plt.savefig(user + 'combined_comparison_pap_new.png',dpi=750)
 plt.show()
