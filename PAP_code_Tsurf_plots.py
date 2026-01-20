@@ -287,5 +287,5 @@ ax1.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(ax
 
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-plt.savefig('/Users/new/Desktop/surface_temperatures_1bar_20bar_he_h2_added.png',dpi=750)
+plt.savefig(user + 'surface_temperatures_1bar_20bar_he_h2_added.png',dpi=750)
 plt.show()
