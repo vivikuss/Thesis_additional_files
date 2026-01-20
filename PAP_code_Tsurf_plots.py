@@ -34,9 +34,9 @@ temps = [273.15, 373.15]
 
 ### ADJUST THIS PART ###
 # Path for all cases
-path = f"/Users/new/Desktop/Results_Tsurf/1bar"                                     # data for 1 bar
-path2 = f"/Users/new/Desktop/Results_Tsurf/added/"                                  # data from one-shot mode
-path_20bar = f"/Users/new/Desktop/Results_Tsurf/20bar"                                    # data for 20 bar
+path = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_fin_1bar_"                                     # data for 1 bar
+path2 = f"/Users/new/Desktop/Thesis_Data/"                                  # data from one-shot mode
+path_20bar = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_"                                    # data for 20 bar
 ####
 
 #### ADJUST LABELS AND PATHS FOR 20 BAR FURTHER DOWN ###
@@ -162,7 +162,7 @@ linestyles = ['solid', 'dashed', 'dotted']
 
 ### ADJUST THIS PART ###
 # Path for 20 bar case
-path = f"/Users/new/Desktop/Results_Tsurf/20bar"
+path = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_"
 ###
 ax2.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(axis),color='paleturquoise', label='Habitable Zone')
 for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # loop over concentrations for first gas
