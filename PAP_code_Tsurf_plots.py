@@ -34,9 +34,9 @@ temps = [273.15, 373.15]
 
 ### ADJUST THIS PART ###
 # Path for all cases
-user = f"/Users/new/Desktop/"             #### CUSTOMIZE ####                            # path to Desktop
+user = f"/Users/new/Desktop/"
 path = user + f"Thesis_Data/results_Tsurf_fin_1bar_"                                     # data for 1 bar
-path2 = user + f"Thesis_Data/"                                                      # data from one-shot mode
+path2 = user + f"Thesis_Data/"                                  # data from one-shot mode
 path_20bar = user + f"Thesis_Data/results_Tsurf_"                                    # data for 20 bar
 ####
 
@@ -56,13 +56,16 @@ def axis_to_flux(axis):
 def flux_to_axis(flux):
     return np.sqrt(lum_si[0]/(4*np.pi*flux))/(au_unit)
 
-
 # Plot surface temperature in two panels
 f, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(24, 9))
 ax2.sharey(ax1)
 formatter = ticker.ScalarFormatter(useMathText=True)
 formatter.set_scientific(False)  # force scientific notation
 formatter.set_powerlimits((-1, 1))  
+ax1.axvline(x=flux_to_axis(605),color="midnightblue",linewidth=2)
+ax1.text(0.2, 0.83, 'LHS 1140 b', transform=ax1.transAxes,fontsize=17,color="midnightblue")
+ax1.axvline(x=flux_to_axis(1368),color="dodgerblue",linewidth=2)
+ax1.text(0.02, 0.18, 'K2-18b', transform=ax1.transAxes,fontsize=17,color="dodgerblue")
 for label,s,col,line in zip(labs1,strings,colors1,linestyles):      
     g = gas[0]                                                  # loop over concentrations for first gas
     for i in range(grid_size):
@@ -98,9 +101,9 @@ for label,s,col,line in zip(labs1,strings,colors1,linestyles):
     Tsurf_new = Tsurf_new[sorted_indices]
     axis_new = axis_new[sorted_indices]
 
-    ax1.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line)
+    ax1.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line,linewidth=2)
     secax1 = ax1.secondary_xaxis('top', functions=(axis_to_flux, flux_to_axis))     # add second x axis for flux
-    secax1.tick_params(axis='x', labelsize=18, pad=2)
+    secax1.tick_params(axis='x', labelsize=22, pad=2)
     secax1.set_xticks([150, 300, 600, 1200])
 
 for label,s,col,line in zip(labs2,strings,colors2,linestyles):
@@ -138,22 +141,21 @@ for label,s,col,line in zip(labs2,strings,colors2,linestyles):
     Tsurf_new = Tsurf_new[sorted_indices]
     axis_new = axis_new[sorted_indices]
 
-    ax1.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line)
+    ax1.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line,linewidth=2)
     secax1 = ax1.secondary_xaxis('top', functions=(axis_to_flux, flux_to_axis))    # add second x axis for flux
-    secax1.tick_params(axis='x', labelsize=18, pad=2)
+    secax1.tick_params(axis='x', labelsize=22, pad=2)
     secax1.set_xticks([150, 300, 600, 1200])
 
 ax1.grid(True, which='both')
 ax1.xaxis.set_major_formatter(formatter)
 ax1.xaxis.offsetText.set_horizontalalignment('right')
-ax1.set_xlabel('Semi Major Axis (au)',fontsize=18)
-ax1.set_ylabel(r'T$_{surf}$ (K)',fontsize=18)
-secax1.set_xlabel(r'Flux (W/m$^2$)', fontsize=18, labelpad=10)
+ax1.set_xlim([axis_std[0], axis_std[-1]])
+ax1.set_xlabel('Semi Major Axis (au)',fontsize=22)
+ax1.set_ylabel(r'T$_{surf}$ (K)',fontsize=22)
+secax1.set_xlabel(r'Flux (W/m$^2$)', fontsize=22, labelpad=10)
 
 ### CUSTOMIZE IF NEEDED ###
 # Labels for 20 bar case
-# labs1 = [r'20 bar, 99% He,   1% CO$_2$',r'20 bar, 90% He, 10% CO$_2$',r'20 bar,   5% He, 95% CO$_2$']
-# labs2 = [r'20 bar, 99% H$_2$,   1% CO$_2$',r'20 bar, 90% H$_2$, 10% CO$_2$',r'20 bar,   5% H$_2$, 95% CO$_2$']
 strings1 = ['he_20bar_1p','he_10p_20bar_10p','he_20bar_95p']   # ideally, these files are named more coherently :')
 strings2 = ['h2_20bar_1p','h2_10p_20bar_10p','h2_20bar_95p']
 colors1 = ['darkviolet', 'indigo','rebeccapurple']
@@ -163,9 +165,13 @@ linestyles = ['solid', 'dashed', 'dotted']
 
 ### ADJUST THIS PART ###
 # Path for 20 bar case
-path = f"/Users/new/Desktop/Thesis_Data/results_Tsurf_"
+path = user + f"Thesis_Data/results_Tsurf_"
 ###
 ax2.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(axis),color='paleturquoise', label='Habitable Zone')
+ax2.axvline(x=flux_to_axis(605),color="midnightblue",linewidth=2)
+ax2.text(0.2, 0.83, 'LHS 1140 b', transform=ax2.transAxes,fontsize=17,color="midnightblue")
+ax2.axvline(x=flux_to_axis(1368),color="dodgerblue",linewidth=2)
+ax2.text(0.02, 0.18, 'K2-18b', transform=ax2.transAxes,fontsize=17,color="dodgerblue")
 for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # loop over concentrations for first gas
     for i in range(grid_size):  
         flux[0,i] = lum_si[0]/(4*np.pi*axis_si[i]**2)                    # determine initial flux for label
@@ -194,9 +200,9 @@ for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # lo
     Tsurf_new = Tsurf_new[sorted_indices]
     axis_new = axis_new[sorted_indices]
 
-    ax2.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line)
+    ax2.plot(axis_new, Tsurf_new,label={label},color=col,linestyle=line,linewidth=2)
     secax2 = ax2.secondary_xaxis('top', functions=(axis_to_flux, flux_to_axis))     # add second x axis for flux
-    secax2.tick_params(axis='x', labelsize=18, pad=2)
+    secax2.tick_params(axis='x', labelsize=22, pad=2)
     secax2.set_xticks([150, 300, 600, 1200])
 
 
@@ -216,24 +222,25 @@ for label,s,col,line in zip(labs2,strings2,colors2,linestyles):          # loop 
             flux[0,i] = np.nan
             axis_adj[i] = np.nan
     
-    ax2.plot(axis_adj, Tsurf[0,:],label={label},color=col,linestyle=line)
+    ax2.plot(axis_adj, Tsurf[0,:],label={label},color=col,linestyle=line,linewidth=2)
     secax2 = ax2.secondary_xaxis('top', functions=(axis_to_flux, flux_to_axis))    # add second x axis for flux
-    secax2.tick_params(axis='x', labelsize=18, pad=2)
+    secax2.tick_params(axis='x', labelsize=22, pad=2)
     secax2.set_xticks([150, 300, 600, 1200])
 
 ax2.grid(True, which='both')
 ax2.xaxis.set_major_formatter(formatter)
 ax2.xaxis.offsetText.set_horizontalalignment('right')
-ax2.set_xlabel('Semi Major Axis (au)',fontsize=18)
-secax2.set_xlabel(r'Flux (W/m$^2$)', fontsize=18, labelpad=10)
+ax2.set_xlabel('Semi Major Axis (au)',fontsize=22)
+secax2.set_xlabel(r'Flux (W/m$^2$)', fontsize=22, labelpad=10)
 ax1.set_xticks([0.2, 0.3, 0.4, 0.5])
 ax2.set_xticks([0.2, 0.3, 0.4, 0.5])
-ax1.tick_params(labelsize=17)
-ax2.tick_params(labelsize=17)
-ax1.text(0.54, 0.68, 'Habitable Zone', transform=ax1.transAxes,fontsize=18,fontweight='bold',color='lightseagreen')   
-ax2.text(0.54, 0.68, 'Habitable Zone', transform=ax2.transAxes,fontsize=18,fontweight='bold',color='lightseagreen')   
-ax1.text(-0.15, 1.05, 'a)', transform=ax1.transAxes,fontsize=20,fontweight='bold',va='bottom', ha='left')
-ax2.text(-0.10, 1.05, 'b)', transform=ax2.transAxes,fontsize=20,fontweight='bold',va='bottom', ha='left')
+ax2.set_xlim([axis_std[0], axis_std[-1]])
+ax1.tick_params(labelsize=22)
+ax2.tick_params(labelsize=22)
+ax1.text(0.52, 0.68, 'Habitable Zone', transform=ax1.transAxes,fontsize=21,fontweight='bold',color='lightseagreen')   
+ax2.text(0.52, 0.68, 'Habitable Zone', transform=ax2.transAxes,fontsize=21,fontweight='bold',color='lightseagreen')   
+ax1.text(-0.15, 1.07, 'a) 1 bar', transform=ax1.transAxes,fontsize=22,fontweight='bold',va='bottom', ha='left')
+ax2.text(-0.10, 1.07, 'b) 20 bar', transform=ax2.transAxes,fontsize=22,fontweight='bold',va='bottom', ha='left')
 plt.subplots_adjust(bottom=0.16)  
 
 for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # loop over concentrations for first gas
@@ -271,21 +278,21 @@ for label,s,col,line in zip(labs2,strings2,colors2,linestyles):          # loop 
     
     ax3.plot(axis_adj, albedo, label=label, color=col, linewidth=2, linestyle=line)
 
-ax3.text(-0.10, 1.05, 'c)', transform=ax3.transAxes,fontsize=20,fontweight='bold',va='bottom', ha='left')
+ax3.text(-0.10, 1.07, 'c) Albedo', transform=ax3.transAxes,fontsize=22,fontweight='bold',va='bottom', ha='left')
 ax3.grid(True, which='both')
 ax3.xaxis.set_major_formatter(formatter)
 ax3.xaxis.offsetText.set_horizontalalignment('right')
-ax3.set_xlabel('Semi Major Axis (au)',fontsize=18)
-ax3.set_ylabel('Albedo', fontsize=18)
+ax3.set_xlabel('Semi Major Axis (au)',fontsize=22)
+#ax3.set_ylabel('Albedo', fontsize=21)
 ax3.set_xticks([0.2, 0.3, 0.4, 0.5])
 ax3.set_yticks([0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4])
 ax3.set_xlim([0.15,0.55]) 
-ax3.tick_params(labelsize=18)
-ax3.legend(loc='best', fontsize=18)
+ax3.tick_params(labelsize=22)
+ax3.legend(loc='best', fontsize=21)
 
 ax1.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(axis),color='paleturquoise', label='Habitable Zone')
 
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.savefig(user + 'surface_temperatures_1bar_20bar_he_h2_added.png',dpi=750)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.savefig(user+'surface_temperatures_1bar_20bar_he_h2_added.png',dpi=750)
 plt.show()
