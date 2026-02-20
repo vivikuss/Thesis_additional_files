@@ -64,9 +64,9 @@ formatter = ticker.ScalarFormatter(useMathText=True)
 formatter.set_scientific(False)  # force scientific notation
 formatter.set_powerlimits((-1, 1))  
 ax1.axvline(x=flux_to_axis(605),color="midnightblue",linewidth=2)
-ax1.text(0.2, 0.83, 'LHS 1140 b', transform=ax1.transAxes,fontsize=17,color="midnightblue")
+ax1.text(0.2, 0.78, 'LHS 1140 b', rotation=90, transform=ax1.transAxes,fontsize=17,color="midnightblue")
 ax1.axvline(x=flux_to_axis(1368),color="dodgerblue",linewidth=2)
-ax1.text(0.02, 0.18, 'K2-18b', transform=ax1.transAxes,fontsize=17,color="dodgerblue")
+ax1.text(0.055, 0.18, 'K2-18b', rotation= 90, transform=ax1.transAxes,fontsize=17,color="dodgerblue")
 for label,s,col,line in zip(labs1,strings,colors1,linestyles):      
     g = gas[0]                                                  # loop over concentrations for first gas
     for i in range(grid_size):
@@ -179,9 +179,9 @@ path = user + f"Thesis_Data/results_Tsurf_"
 ###
 ax2.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(axis),color='paleturquoise', label='Habitable Zone')
 ax2.axvline(x=flux_to_axis(605),color="midnightblue",linewidth=2)
-ax2.text(0.2, 0.83, 'LHS 1140 b', transform=ax2.transAxes,fontsize=17,color="midnightblue")
+ax2.text(0.2, 0.78, 'LHS 1140 b', rotation=90, transform=ax2.transAxes,fontsize=17,color="midnightblue")
 ax2.axvline(x=flux_to_axis(1368),color="dodgerblue",linewidth=2)
-ax2.text(0.02, 0.18, 'K2-18b', transform=ax2.transAxes,fontsize=17,color="dodgerblue")
+ax2.text(0.055, 0.18, 'K2-18b', rotation= 90, transform=ax2.transAxes,fontsize=17,color="dodgerblue")
 for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # loop over concentrations for first gas
     flux = np.zeros((grid_size,grid_size))
     for i in range(grid_size):  
@@ -281,7 +281,9 @@ for label,s,col,line in zip(labs1,strings1,colors1,linestyles):             # lo
             flux[0,i] = np.nan
             axis_adj[i] = np.nan
  
+    #print(albedo)
     ax3.plot(axis_adj, albedo, label=label, color=col, linewidth=2, linestyle=line)
+#print("AXIS", axis_adj)
 
 for label,s,col,line in zip(labs2,strings2,colors2,linestyles):          # loop over concentrations for second gas
     axis_adj = np.zeros_like(axis)
@@ -308,8 +310,12 @@ for label,s,col,line in zip(labs2,strings2,colors2,linestyles):          # loop 
             Tsurf[0,i] = np.nan
             flux[0,i] = np.nan
             axis_adj[i] = np.nan
-   
+    
+    
+    #print(albedo)
     ax3.plot(axis_adj, albedo, label=label, color=col, linewidth=2, linestyle=line)
+
+#print("AXIS", axis_adj)
 
 ax3.text(-0.10, 1.07, 'c) Albedo', transform=ax3.transAxes,fontsize=22,fontweight='bold',va='bottom', ha='left')
 ax3.grid(True, which='both')
@@ -325,5 +331,5 @@ ax1.fill_between(axis_std, temps[0]*np.ones_like(axis), temps[1]*np.ones_like(ax
 
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
-plt.savefig('/Users/new/Desktop/surface_temperatures_1bar_20bar_he_h2_corrected_ISR.png',dpi=750)
+plt.savefig('/Users/new/Desktop/surface_temperatures_1bar_20bar_he_h2_corr.png',dpi=750)
 plt.show()
